@@ -4,18 +4,21 @@
   import { onMount } from 'svelte';
   import Fact from './Fact.svelte';
   import Cat from './Cat.svelte';
+  
 
   let fact = '';
   let catImage ='';
 
   const fetchNewFact = async () => {
     try{
-      const response = await fetch('https://useless-facts.sameerkumar.website/api');
+      const response = await fetch('https://uselessfacts.jsph.pl/api/v2/facts/random');
       if (!response.ok){
         throw new Error('Failed to fetch: ${response.statusText');
       }
       const data = await response.json();
+      console.log(data);
       fact = data.text;
+      console.log(fact);
       console.log('Fact fetched:', fact)
     } catch (error) {
       console.error('Error fetching fact:', error);
@@ -48,7 +51,7 @@
 <main>
   <h1>Useless Fact App</h1>
   <button on:click={fetchNewFact}>Get New Fact</button>
-  <Fact text={fact} />
+  <Fact {fact} />
   <button on:click={getCatImage}>Or get a cat picture</button>
   {#if catImage}
     <div>

@@ -1,9 +1,9 @@
 <script>
-    export let text;
+    export let fact;
 </script>
 
 <div class="fact-container">
-    <p>{text}</p>
+    <p>{fact}</p>
 </div>
 
 <style>
