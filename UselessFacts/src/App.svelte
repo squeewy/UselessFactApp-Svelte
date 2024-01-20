@@ -3,8 +3,10 @@
 
   import { onMount } from 'svelte';
   import Fact from './Fact.svelte';
+  import Cat from './Cat.svelte';
 
   let fact = '';
+  let catImage ='';
 
   const fetchNewFact = async () => {
     try{
@@ -20,15 +22,39 @@
     }
   };
 
+  const fetchCatImage = async() => {
+    try{
+      const response = await fetch('https://api.thecatapi.com/v1/images/search');
+      if (!response.ok){
+        throw new Error(`Failed to fetch cat image: ${response.status}`);
+      }   
+      const data = await response.json();
+      catImage = data[0].url;
+      console.log('Cat image fetched:',catImage);
+    } catch (error){
+      console.error('Error fetching cat image: ', error);
+    }
+  };
+
   onMount(() => {
     fetchNewFact();
   });
+  const getCatImage = async () => {
+    await fetchCatImage();
+  };
+
 </script>
 
 <main>
   <h1>Useless Fact App</h1>
   <button on:click={fetchNewFact}>Get New Fact</button>
   <Fact text={fact} />
+  <button on:click={getCatImage}>Or get a cat picture</button>
+  {#if catImage}
+    <div>
+      <Cat src = {catImage}/>
+    </div>
+  {/if}
 </main>
 
 <style>
