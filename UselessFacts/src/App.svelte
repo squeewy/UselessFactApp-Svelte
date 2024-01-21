@@ -49,7 +49,7 @@
 </script>
 
 <main>
-  <h1>Useless Fact App</h1>
+  <h1>Useless Facts And Cat Pictures</h1>
   <button on:click={fetchNewFact}>Get New Fact</button>
   <Fact {fact} />
   <button on:click={getCatImage}>Or get a cat picture</button>
