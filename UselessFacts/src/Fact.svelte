@@ -12,5 +12,6 @@
         padding: 10px;
         border: 1px solid #ccc;
         border-radius: 5px;
+        font-size: 20px;
     }
 </style>

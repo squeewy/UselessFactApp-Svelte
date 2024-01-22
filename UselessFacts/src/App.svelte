@@ -69,7 +69,8 @@
   button {
     margin-top: 10px;
     padding: 8px 16px;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
   }
+  
 </style>
